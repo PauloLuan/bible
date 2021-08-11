@@ -1,10 +1,20 @@
-import { Container, Heading, Spacer, Stack, Text } from '@chakra-ui/react'
+import {
+  Button,
+  Container,
+  Heading,
+  Spacer,
+  Stack,
+  Text
+} from '@chakra-ui/react'
+import { useCopyToClipboard } from 'react-use'
 
 export interface MainProps {
   testId?: string
 }
 
 const Main = ({ testId }: MainProps) => {
+  const [_, copyToClipboard] = useCopyToClipboard()
+
   return (
     <>
       <Container>
@@ -13,6 +23,9 @@ const Main = ({ testId }: MainProps) => {
           <Spacer />
           <Text fontSize="xl" fontWeight="light">
             1 No princípio Deus criou os céus e a terra.
+            <Button onClick={() => copyToClipboard('mindingo')} ml={2}>
+              Copiar
+            </Button>
           </Text>
           <Text fontSize="xl" fontWeight="light">
             2 Era a terra sem forma e vazia; trevas co­briam a face do abismo, e
