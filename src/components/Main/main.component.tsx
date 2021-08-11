@@ -83,7 +83,9 @@ interface ChapterProps {
 const Chapters = ({ chapters, name }: ChapterProps) => {
   return (
     <>
-      <Heading size="3xl">{name}</Heading>
+      <Heading size="3xl" pb={5}>
+        {name}
+      </Heading>
 
       {chapters.map((chapter) =>
         chapter.map((verse, index) => (
