@@ -1,0 +1,16 @@
+{
+  "name": "Cifras Católicas",
+  "short_name": "Cifras Católicas",
+  "icons": [
+    {
+      "src": "/img/cifras-logo.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    }
+  ],
+  "background_color": "#000",
+  "description": "Cifras Católicas",
+  "display": "fullscreen",
+  "start_url": "/",
+  "theme_color": "#000"
+}

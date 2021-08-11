@@ -1,0 +1,13 @@
+import { Flex } from '@chakra-ui/react'
+
+export interface {{pascalCase name}}Props {
+  name?: string
+}
+
+export const {{pascalCase name}} = ({ name }: {{pascalCase name}}Props) => {
+  return (
+    <Flex>
+      <h1 data-testid='{{kebabCase name}}'>{{kebabCase name}}</h1>
+    </Flex>
+  )
+}
