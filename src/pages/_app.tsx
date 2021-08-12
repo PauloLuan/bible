@@ -8,8 +8,8 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider resetCSS theme={theme}>
       <Head>
-        <title>Cifras Católicas</title>
-        <meta name="description" content="Aoeee" />
+        <title>Bíblia Sagrada</title>
+        <meta name="description" content="Bíblia Sagrada Completa" />
       </Head>
 
       <Component {...pageProps} />
