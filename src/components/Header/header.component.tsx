@@ -6,21 +6,24 @@ import {
   Flex,
   HStack,
   IconButton,
+  useColorMode,
   useColorModeValue,
   useDisclosure,
   VisuallyHidden,
   VStack
 } from '@chakra-ui/react'
-import { Logo } from '@choc-ui/logo'
-import React from 'react'
+import * as React from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
-import { FaChurch } from 'react-icons/fa'
+import { FaChurch, FaMoon, FaSun } from 'react-icons/fa'
 
 export interface HeaderProps {
   name?: string
 }
 
 export const Header = ({ name }: HeaderProps) => {
+  const { toggleColorMode: toggleMode } = useColorMode()
+  const SwitchIcon = useColorModeValue(FaMoon, FaSun)
+
   const bg = useColorModeValue('white', 'gray.800')
   const mobileNav = useDisclosure()
 
@@ -42,8 +45,7 @@ export const Header = ({ name }: HeaderProps) => {
               display="flex"
               alignItems="center"
             >
-              <Logo />
-              <VisuallyHidden>Choc</VisuallyHidden>
+              <VisuallyHidden>Bíblia Sagrada</VisuallyHidden>
             </chakra.a>
             <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">
               <IconButton
@@ -63,7 +65,16 @@ export const Header = ({ name }: HeaderProps) => {
               color="brand.500"
               display={{ base: 'none', md: 'inline-flex' }}
             >
-              <Button variant="ghost">Sign in</Button>
+              {/* <Button variant="ghost">Sign in</Button> */}
+              <IconButton
+                size="md"
+                fontSize="lg"
+                aria-label={`Mudar para o modo Noturno`}
+                variant="outline"
+                ml={{ base: '0', md: '3' }}
+                onClick={toggleMode}
+                icon={<SwitchIcon />}
+              />
             </HStack>
             <Box display={{ base: 'inline-flex', md: 'none' }}>
               <IconButton
@@ -96,9 +107,9 @@ export const Header = ({ name }: HeaderProps) => {
                   onClick={mobileNav.onClose}
                 />
 
-                <Button w="full" variant="ghost">
+                {/* <Button w="full" variant="ghost">
                   Sign in
-                </Button>
+                </Button> */}
               </VStack>
             </Box>
           </HStack>
