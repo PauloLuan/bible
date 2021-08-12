@@ -60,17 +60,16 @@ const Verses = ({ verses, name }: VersesProps) => {
 }
 
 interface ChapterProps {
-  key: string
+  index: string
   chapter: string[]
   name: string
 }
 
-const Chapters = ({ key, chapter, name }: ChapterProps) => {
+const Chapters = ({ index, chapter, name }: ChapterProps) => {
   return (
     <>
       <Heading size="3xl">{name}</Heading>
-      <Heading>{key}</Heading>
-      <Verses key={key} name={`Capítulo: ${key}`} verses={chapter} />
+      <Verses key={index} name={`Capítulo ${index}`} verses={chapter} />
     </>
   )
 }
@@ -81,8 +80,7 @@ const Main = ({ testId, name, chapter, index }: MainProps) => {
       <Container data-testId={testId}>
         <Stack>
           <Spacer />
-          <Heading>{index}</Heading>
-          <Chapters key={index} name={name} chapter={chapter} />
+          <Chapters key={index} index={index} name={name} chapter={chapter} />
         </Stack>
       </Container>
     </>
