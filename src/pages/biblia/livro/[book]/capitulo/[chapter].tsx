@@ -40,7 +40,7 @@ export const getStaticPaths: GetStaticPaths<{
       paths.push({
         params: {
           book: cleanName,
-          chapter: String(index)
+          chapter: String(index + 1)
         }
       })
     })

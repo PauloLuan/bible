@@ -77,7 +77,7 @@ const Chapters = ({ index, chapter, name }: ChapterProps) => {
 const Main = ({ testId, name, chapter, index }: MainProps) => {
   return (
     <>
-      <Container data-testId={testId}>
+      <Container data-testid={testId}>
         <Stack>
           <Spacer />
           <Chapters key={index} index={index} name={name} chapter={chapter} />
