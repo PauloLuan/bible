@@ -1,4 +1,5 @@
 import { Box, VStack } from '@chakra-ui/react'
+import { Header } from '@components/Header'
 import { ReactNode } from 'react'
 
 export interface LayoutProps {
@@ -12,6 +13,7 @@ export const Layout = ({
 }: LayoutProps) => {
   return (
     <Box w="full" h="full">
+      <Header />
       <VStack
         p={[0, 16]}
         spacing={[4, 16]}
