@@ -46,17 +46,17 @@ export const Header = ({ name }: HeaderProps) => {
               alignItems="center"
             >
               <VisuallyHidden>Bíblia Sagrada</VisuallyHidden>
+              <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">
+                <IconButton
+                  aria-label="Open menu"
+                  fontSize="20px"
+                  color={useColorModeValue('gray.800', 'inherit')}
+                  variant="ghost"
+                  icon={<FaChurch />}
+                />
+                Bíblia Sagrada
+              </chakra.h1>
             </chakra.a>
-            <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">
-              <IconButton
-                aria-label="Open menu"
-                fontSize="20px"
-                color={useColorModeValue('gray.800', 'inherit')}
-                variant="ghost"
-                icon={<FaChurch />}
-              />
-              Bíblia Sagrada
-            </chakra.h1>
           </Flex>
           <HStack display="flex" alignItems="center" spacing={1}>
             <HStack

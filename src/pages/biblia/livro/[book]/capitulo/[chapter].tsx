@@ -1,11 +1,9 @@
-import { Heading } from '@chakra-ui/react'
+import data from '@assets/biblia/json/min.json'
 import { BibleBook } from '@types/Bible'
 import { Layout, Main } from 'components'
+import { deburr, get, kebabCase } from 'lodash'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
-import { get, deburr, kebabCase } from 'lodash'
-
-import data from '@assets/biblia/json/min.json'
 
 const findBookByName = (name: string) => {
   if (!name) return {}
@@ -16,8 +14,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const bookSlug = context?.params?.book
   const selectedChapter = context?.params?.chapter
 
+  const reduceOneOnChapter = Number(selectedChapter) - 1
+
   const book: BibleBook = findBookByName(bookSlug)
-  const chapter = get(book, `chapters[${selectedChapter}]`)
+  const chapter = get(book, `chapters[${reduceOneOnChapter}]`)
 
   return {
     props: {
