@@ -1,5 +1,12 @@
 import { CopyIcon } from '@chakra-ui/icons'
-import { Container, Heading, Spacer, Stack, Text } from '@chakra-ui/react'
+import {
+  Container,
+  Heading,
+  Spacer,
+  Stack,
+  Text,
+  useToast
+} from '@chakra-ui/react'
 import { useCopyToClipboard } from 'react-use'
 
 export interface MainProps {
@@ -16,6 +23,7 @@ interface VerseProps {
 
 const Verse = ({ text, index }: VerseProps) => {
   const [_, copyToClipboard] = useCopyToClipboard()
+  const toast = useToast()
 
   return (
     <Text fontSize="xl" fontWeight="light">
@@ -24,7 +32,16 @@ const Verse = ({ text, index }: VerseProps) => {
       </Text>
       {text}
       <CopyIcon
-        onClick={() => copyToClipboard(text)}
+        onClick={() => {
+          copyToClipboard(text)
+          toast({
+            title: 'Sucesso!',
+            description: 'Seu texto foi copiado!',
+            status: 'success',
+            duration: 2000,
+            isClosable: true
+          })
+        }}
         w={4}
         h={4}
         ml={2}
