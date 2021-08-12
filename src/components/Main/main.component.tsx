@@ -75,6 +75,31 @@ const Verse = ({ text, index }: VerseProps) => {
   )
 }
 
+interface VersesProps {
+  verses: string[]
+  name: string
+}
+
+const Verses = ({ verses, name }: VersesProps) => {
+  return (
+    <>
+      <Heading
+        fontWeight="hairline"
+        fontStyle="italic"
+        as="h2"
+        size="sm"
+        pb={5}
+      >
+        {name}
+      </Heading>
+
+      {verses.map((verse, index) => (
+        <Verse key={index} text={verse} index={index} />
+      ))}
+    </>
+  )
+}
+
 interface ChapterProps {
   chapters: string[][]
   name: string
@@ -83,15 +108,15 @@ interface ChapterProps {
 const Chapters = ({ chapters, name }: ChapterProps) => {
   return (
     <>
-      <Heading size="3xl" pb={5}>
-        {name}
-      </Heading>
+      <Heading size="3xl">{name}</Heading>
 
-      {chapters.map((chapter) =>
-        chapter.map((verse, index) => (
-          <Verse key={index} text={verse} index={index} />
-        ))
-      )}
+      {chapters.map((chapter: string[], chapterNumber: number) => (
+        <Verses
+          key={chapterNumber}
+          name={`Capítulo: ${chapterNumber + 1}`}
+          verses={chapter}
+        />
+      ))}
     </>
   )
 }
