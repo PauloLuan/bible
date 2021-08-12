@@ -125,22 +125,21 @@ const Footer = ({ index, name }) => {
             bg: 'gray.300'
           }}
         >
-          <Link key={index} style={{ textDecoration: 'none' }}>
-            <NextLink
-              prefetch={false}
-              as={previousLink}
-              href={previousLink}
-              passHref
-              key={previousLink}
-            >
+          <NextLink
+            as={previousLink}
+            href={previousLink}
+            passHref
+            key={previousLink}
+          >
+            <Link key={index} style={{ textDecoration: 'none' }}>
               <HStack p={4}>
                 <ChevronLeftIcon mr="1" fontSize={32} />
                 <Text fontSize="md">
                   Anterior: {name} {previous}
                 </Text>
               </HStack>
-            </NextLink>
-          </Link>
+            </Link>
+          </NextLink>
         </Flex>
       )}
 
@@ -155,14 +154,8 @@ const Footer = ({ index, name }) => {
           bg: 'gray.300'
         }}
       >
-        <Link key={index} style={{ textDecoration: 'none' }}>
-          <NextLink
-            prefetch={false}
-            as={nextLink}
-            href={nextLink}
-            passHref
-            key={nextLink}
-          >
+        <NextLink as={nextLink} href={nextLink} passHref key={nextLink}>
+          <Link key={index} style={{ textDecoration: 'none' }}>
             <HStack p={4}>
               <Text fontSize="md">
                 Próximo: {name} {next}
@@ -170,8 +163,8 @@ const Footer = ({ index, name }) => {
 
               <ChevronRightIcon mr="1" fontSize={32} />
             </HStack>
-          </NextLink>
-        </Link>
+          </Link>
+        </NextLink>
       </Flex>
     </SimpleGrid>
   )
