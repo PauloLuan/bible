@@ -127,6 +127,7 @@ const Footer = ({ index, name }) => {
         >
           <Link key={index} style={{ textDecoration: 'none' }}>
             <NextLink
+              prefetch={false}
               as={previousLink}
               href={previousLink}
               passHref
@@ -155,7 +156,13 @@ const Footer = ({ index, name }) => {
         }}
       >
         <Link key={index} style={{ textDecoration: 'none' }}>
-          <NextLink as={nextLink} href={nextLink} passHref key={nextLink}>
+          <NextLink
+            prefetch={false}
+            as={nextLink}
+            href={nextLink}
+            passHref
+            key={nextLink}
+          >
             <HStack p={4}>
               <Text fontSize="md">
                 Próximo: {name} {next}

@@ -56,7 +56,13 @@ const RenderChapters = ({ book }: ChapterProps) => {
 
         return (
           <Link key={index}>
-            <NextLink as={link} href={link} passHref key={link}>
+            <NextLink
+              prefetch={false}
+              as={link}
+              href={link}
+              passHref
+              key={link}
+            >
               <Box as="span" m={2}>
                 {chapterNumber}
               </Box>
