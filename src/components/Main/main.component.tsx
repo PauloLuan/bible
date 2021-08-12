@@ -94,7 +94,7 @@ const Verses = ({ verses, name }: VersesProps) => {
       </Heading>
 
       {verses.map((verse, index) => (
-        <Verse key={index} text={verse} index={index} />
+        <Verse key={index} text={verse} index={index + 1} />
       ))}
     </>
   )
