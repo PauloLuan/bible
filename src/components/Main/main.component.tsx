@@ -1,7 +1,7 @@
 import { CopyIcon } from '@chakra-ui/icons'
 import { Container, Heading, Spacer, Stack, Text } from '@chakra-ui/react'
 // import data from '@assets/biblia/json/min'
-import { BibleChapter } from '@types/Bible'
+import { BibleBook } from '@types/Bible'
 import { useCopyToClipboard } from 'react-use'
 
 export interface MainProps {
@@ -128,7 +128,7 @@ const Main = ({ testId }: MainProps) => {
         <Stack>
           <Spacer />
 
-          {data.map(({ chapters, name }: BibleChapter, index: number) => (
+          {data.map(({ chapters, name }: BibleBook, index: number) => (
             <Chapters key={index} name={name} chapters={chapters} />
           ))}
         </Stack>
