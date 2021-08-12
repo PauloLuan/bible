@@ -1,4 +1,4 @@
-import data from '@assets/biblia/json/min.json'
+import data from '@assets/biblia/json/nvi.json'
 import { Box, Heading, Link, Spinner } from '@chakra-ui/react'
 import { Layout } from '@components/Layout'
 import { BibleBook } from '@types/Bible'

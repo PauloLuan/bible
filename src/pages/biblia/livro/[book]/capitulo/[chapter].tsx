@@ -1,4 +1,4 @@
-import data from '@assets/biblia/json/min.json'
+import data from '@assets/biblia/json/nvi.json'
 import { BibleBook } from '@types/Bible'
 import { Layout, Main } from 'components'
 import { deburr, get, kebabCase } from 'lodash'
