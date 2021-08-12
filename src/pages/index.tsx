@@ -1,4 +1,4 @@
-import data from '@assets/biblia/json/nvi.json'
+import data from '@assets/biblia/json/nvi_thin.json'
 import { Box, Heading, Link, Spinner } from '@chakra-ui/react'
 import { Layout } from '@components/Layout'
 import { BibleBook } from '@types/Bible'
@@ -8,7 +8,6 @@ import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
-const REVALIDATE_TIME = IS_PRODUCTION ? 60 * 60 : 60 * 5
 
 export const getStaticProps = async () => {
   const books = data
@@ -16,24 +15,9 @@ export const getStaticProps = async () => {
   return {
     props: {
       books
-    },
-    revalidate: REVALIDATE_TIME
+    }
   }
 }
-
-// export const getStaticPaths: GetStaticPaths<{ name: string }> = async () => {
-//   const response = await axios.get<BibleBook[]>(ENDPOINT)
-//   const books = response.data
-
-//   const paths = books.map((book) => {
-//     return { params: { name: book.name } }
-//   })
-
-//   return {
-//     paths,
-//     fallback: true
-//   }
-// }
 
 interface RenderBooksProps {
   books: BibleBook[]

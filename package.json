@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev -p 4444",
-    "build": "next build ",
+    "build": "next build && next export",
     "start": "next start",
     "format": "eslint --fix src --ext .js,.jsx,.ts,.tsx",
     "test": "jest --maxWorkers=50%",
