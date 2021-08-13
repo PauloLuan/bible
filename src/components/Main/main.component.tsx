@@ -1,20 +1,14 @@
-import { ChevronLeftIcon, ChevronRightIcon, CopyIcon } from '@chakra-ui/icons'
+import { CopyIcon } from '@chakra-ui/icons'
 import {
-  Box,
   Container,
-  Flex,
   Heading,
-  HStack,
-  Link,
-  SimpleGrid,
   Spacer,
   Stack,
   Text,
   useToast
 } from '@chakra-ui/react'
-import NextLink from 'next/link'
+import { Footer } from '@components/Footer'
 import { useCopyToClipboard } from 'react-use'
-import { deburr, kebabCase } from 'lodash'
 
 export interface MainProps {
   testId?: string
@@ -95,78 +89,6 @@ const Chapters = ({ index, chapter, name }: ChapterProps) => {
       <Heading size="3xl">{name}</Heading>
       <Verses key={index} name={`Capítulo ${index}`} verses={chapter} />
     </>
-  )
-}
-
-// FIXME: faltou a validação do next quando for o último capitulo...
-// para isto vou precisar saber o tamanho do array de items...
-const Footer = ({ index, name }) => {
-  const indexNumber = +index
-  const previous = indexNumber - 1
-  const next = indexNumber + 1
-  const SHOULD_RENDER_PREVIOUS = previous > 0
-
-  const previousLink = deburr(
-    `/biblia/livro/${kebabCase(name)}/capitulo/${previous}`
-  )
-  const nextLink = deburr(`/biblia/livro/${kebabCase(name)}/capitulo/${next}`)
-
-  return (
-    <SimpleGrid columns={2} spacing={10} py={10}>
-      {SHOULD_RENDER_PREVIOUS && (
-        <Flex
-          color="black"
-          boxShadow="2xl"
-          bg="gray.100"
-          height="80px"
-          align="center"
-          justify="center"
-          _hover={{
-            bg: 'gray.300'
-          }}
-        >
-          <NextLink
-            as={previousLink}
-            href={previousLink}
-            passHref
-            key={previousLink}
-          >
-            <Link key={index} style={{ textDecoration: 'none' }}>
-              <HStack p={4}>
-                <ChevronLeftIcon mr="1" fontSize={32} />
-                <Text fontSize="md">
-                  Anterior: {name} {previous}
-                </Text>
-              </HStack>
-            </Link>
-          </NextLink>
-        </Flex>
-      )}
-
-      <Flex
-        color="black"
-        boxShadow="2xl"
-        bg="gray.100"
-        height="80px"
-        align="center"
-        justify="center"
-        _hover={{
-          bg: 'gray.300'
-        }}
-      >
-        <NextLink as={nextLink} href={nextLink} passHref key={nextLink}>
-          <Link key={index} style={{ textDecoration: 'none' }}>
-            <HStack p={4}>
-              <Text fontSize="md">
-                Próximo: {name} {next}
-              </Text>
-
-              <ChevronRightIcon mr="1" fontSize={32} />
-            </HStack>
-          </Link>
-        </NextLink>
-      </Flex>
-    </SimpleGrid>
   )
 }
 
