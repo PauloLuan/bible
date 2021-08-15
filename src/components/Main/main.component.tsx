@@ -110,7 +110,7 @@ const Footer = ({ index, name }) => {
   const nextLink = deburr(`/biblia/livro/${kebabCase(name)}/capitulo/${next}`)
 
   return (
-    <SimpleGrid columns={2} spacing={10} py={10}>
+    <SimpleGrid columns={2} spacing={[1, 10]} py={10}>
       {SHOULD_RENDER_PREVIOUS && (
         <Flex
           as="a"
@@ -131,9 +131,9 @@ const Footer = ({ index, name }) => {
             passHref
             key={previousLink}
           >
-            <HStack p={4}>
-              <ChevronLeftIcon mr="1" fontSize={32} />
-              <Text fontSize="md">
+            <HStack p={[2, 4]}>
+              <ChevronLeftIcon mr="1" fontSize={[15, 32]} />
+              <Text fontSize={['sm', 'md']}>
                 Anterior: {name} {previous}
               </Text>
             </HStack>
@@ -155,12 +155,12 @@ const Footer = ({ index, name }) => {
         }}
       >
         <NextLink as={nextLink} href={nextLink} passHref key={nextLink}>
-          <HStack p={4}>
-            <Text fontSize="md">
+          <HStack p={[2, 4]}>
+            <Text fontSize={['sm', 'md']}>
               Próximo: {name} {next}
             </Text>
 
-            <ChevronRightIcon mr="1" fontSize={32} />
+            <ChevronRightIcon mr="1" fontSize={[15, 32]} />
           </HStack>
         </NextLink>
       </Flex>

@@ -59,8 +59,8 @@ const RenderChapters = ({ book }: ChapterProps) => {
             <Box
               as="button"
               m={1}
-              h={8}
-              w={8}
+              h={12}
+              w={12}
               bg={'gray.50'}
               color={'gray.800'}
               boxShadow="2xl"
