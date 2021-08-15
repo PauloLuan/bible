@@ -1,17 +1,22 @@
 import { ChevronLeftIcon, ChevronRightIcon, CopyIcon } from '@chakra-ui/icons'
 import {
+  chakra,
   Container,
+  Divider,
   Flex,
   Heading,
   HStack,
+  IconButton,
   SimpleGrid,
   Spacer,
   Stack,
   Text,
+  useColorModeValue,
   useToast
 } from '@chakra-ui/react'
 import { deburr, kebabCase } from 'lodash'
 import NextLink from 'next/link'
+import { FaHome, FaWhatsapp } from 'react-icons/fa'
 import { useCopyToClipboard } from 'react-use'
 
 export interface MainProps {
@@ -59,9 +64,11 @@ const Verse = ({ text, index }: VerseProps) => {
 interface VersesProps {
   verses: string[]
   name: string
+  baseName: string
 }
 
-const Verses = ({ verses, name }: VersesProps) => {
+const Verses = ({ baseName, verses, name }: VersesProps) => {
+  const completeName = `${baseName} ${name}`
   return (
     <>
       <Heading
@@ -73,6 +80,10 @@ const Verses = ({ verses, name }: VersesProps) => {
       >
         {name}
       </Heading>
+
+      <ShareButton text={completeName} />
+
+      <Divider />
 
       {verses.map((verse, index) => (
         <Verse key={index} text={verse} index={index + 1} />
@@ -91,7 +102,12 @@ const Chapters = ({ index, chapter, name }: ChapterProps) => {
   return (
     <>
       <Heading size="3xl">{name}</Heading>
-      <Verses key={index} name={`Capítulo ${index}`} verses={chapter} />
+      <Verses
+        key={index}
+        baseName={name}
+        name={`Capítulo ${index}`}
+        verses={chapter}
+      />
     </>
   )
 }
@@ -110,8 +126,38 @@ const Footer = ({ index, name }) => {
   const nextLink = deburr(`/biblia/livro/${kebabCase(name)}/capitulo/${next}`)
 
   return (
-    <SimpleGrid columns={2} spacing={[1, 10]} py={10}>
-      {SHOULD_RENDER_PREVIOUS && (
+    <>
+      <SimpleGrid columns={2} spacing={[1, 10]} py={10}>
+        {SHOULD_RENDER_PREVIOUS && (
+          <Flex
+            as="a"
+            color="black"
+            boxShadow="2xl"
+            bg="gray.100"
+            height="80px"
+            align="center"
+            justify="center"
+            _hover={{
+              bg: 'gray.300',
+              cursor: 'pointer'
+            }}
+          >
+            <NextLink
+              as={previousLink}
+              href={previousLink}
+              passHref
+              key={previousLink}
+            >
+              <HStack p={[2, 4]}>
+                <ChevronLeftIcon mr="1" fontSize={[15, 32]} />
+                <Text fontSize={['sm', 'md']}>
+                  Anterior: {name} {previous}
+                </Text>
+              </HStack>
+            </NextLink>
+          </Flex>
+        )}
+
         <Flex
           as="a"
           color="black"
@@ -125,46 +171,82 @@ const Footer = ({ index, name }) => {
             cursor: 'pointer'
           }}
         >
-          <NextLink
-            as={previousLink}
-            href={previousLink}
-            passHref
-            key={previousLink}
-          >
+          <NextLink as={nextLink} href={nextLink} passHref key={nextLink}>
             <HStack p={[2, 4]}>
-              <ChevronLeftIcon mr="1" fontSize={[15, 32]} />
               <Text fontSize={['sm', 'md']}>
-                Anterior: {name} {previous}
+                Próximo: {name} {next}
               </Text>
+
+              <ChevronRightIcon mr="1" fontSize={[15, 32]} />
             </HStack>
           </NextLink>
         </Flex>
-      )}
+      </SimpleGrid>
+      <BackHomeButton />
+    </>
+  )
+}
 
-      <Flex
-        as="a"
-        color="black"
-        boxShadow="2xl"
-        bg="gray.100"
-        height="80px"
-        align="center"
-        justify="center"
-        _hover={{
-          bg: 'gray.300',
-          cursor: 'pointer'
-        }}
-      >
-        <NextLink as={nextLink} href={nextLink} passHref key={nextLink}>
-          <HStack p={[2, 4]}>
-            <Text fontSize={['sm', 'md']}>
-              Próximo: {name} {next}
-            </Text>
+const BackHomeButton = () => {
+  return (
+    <Flex
+      as="a"
+      color="black"
+      boxShadow="2xl"
+      bg="gray.100"
+      height="80px"
+      align="center"
+      justify="center"
+      _hover={{
+        bg: 'gray.300',
+        cursor: 'pointer'
+      }}
+    >
+      <NextLink as={'/'} href={'/'} passHref key={'/'}>
+        <HStack p={[2, 4]}>
+          <IconButton
+            aria-label="Voltar para a tela inicial"
+            fontSize={32}
+            variant="inherit"
+            icon={<FaHome />}
+          />
+          <Text fontSize={['sm', 'md']}>Voltar para a Tela Inicial</Text>
+        </HStack>
+      </NextLink>
+    </Flex>
+  )
+}
 
-            <ChevronRightIcon mr="1" fontSize={[15, 32]} />
-          </HStack>
-        </NextLink>
-      </Flex>
-    </SimpleGrid>
+const ShareButton = ({ text = '' }) => {
+  const currentUrl = window.location.href
+
+  const href = `whatsapp://send?text=Leia ${text} da Bíblia Sagrada! Confira aqui: ${currentUrl}`
+  return (
+    <Flex
+      as="a"
+      color={useColorModeValue('white', 'green.100')}
+      boxShadow="2xl"
+      height="80px"
+      align="center"
+      justify="center"
+      bg={useColorModeValue('green.500', 'green.600')}
+      _hover={{
+        bg: 'green.700',
+        cursor: 'pointer'
+      }}
+    >
+      <chakra.a href={href} data-action="share/whatsapp/share">
+        <HStack p={[2, 4]}>
+          <IconButton
+            aria-label="Compartilhar no Whatsapp"
+            fontSize={32}
+            variant="inherit"
+            icon={<FaWhatsapp />}
+          />
+          <Text fontSize={['sm', 'md']}>Compartilhar no Whatsapp</Text>
+        </HStack>
+      </chakra.a>
+    </Flex>
   )
 }
 
