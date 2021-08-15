@@ -1,20 +1,18 @@
 import { ChevronLeftIcon, ChevronRightIcon, CopyIcon } from '@chakra-ui/icons'
 import {
-  Box,
   Container,
   Flex,
   Heading,
   HStack,
-  Link,
   SimpleGrid,
   Spacer,
   Stack,
   Text,
   useToast
 } from '@chakra-ui/react'
+import { deburr, kebabCase } from 'lodash'
 import NextLink from 'next/link'
 import { useCopyToClipboard } from 'react-use'
-import { deburr, kebabCase } from 'lodash'
 
 export interface MainProps {
   testId?: string
@@ -115,6 +113,7 @@ const Footer = ({ index, name }) => {
     <SimpleGrid columns={2} spacing={10} py={10}>
       {SHOULD_RENDER_PREVIOUS && (
         <Flex
+          as="a"
           color="black"
           boxShadow="2xl"
           bg="gray.100"
@@ -122,7 +121,8 @@ const Footer = ({ index, name }) => {
           align="center"
           justify="center"
           _hover={{
-            bg: 'gray.300'
+            bg: 'gray.300',
+            cursor: 'pointer'
           }}
         >
           <NextLink
@@ -131,19 +131,18 @@ const Footer = ({ index, name }) => {
             passHref
             key={previousLink}
           >
-            <Link key={index} style={{ textDecoration: 'none' }}>
-              <HStack p={4}>
-                <ChevronLeftIcon mr="1" fontSize={32} />
-                <Text fontSize="md">
-                  Anterior: {name} {previous}
-                </Text>
-              </HStack>
-            </Link>
+            <HStack p={4}>
+              <ChevronLeftIcon mr="1" fontSize={32} />
+              <Text fontSize="md">
+                Anterior: {name} {previous}
+              </Text>
+            </HStack>
           </NextLink>
         </Flex>
       )}
 
       <Flex
+        as="a"
         color="black"
         boxShadow="2xl"
         bg="gray.100"
@@ -151,19 +150,18 @@ const Footer = ({ index, name }) => {
         align="center"
         justify="center"
         _hover={{
-          bg: 'gray.300'
+          bg: 'gray.300',
+          cursor: 'pointer'
         }}
       >
         <NextLink as={nextLink} href={nextLink} passHref key={nextLink}>
-          <Link key={index} style={{ textDecoration: 'none' }}>
-            <HStack p={4}>
-              <Text fontSize="md">
-                Próximo: {name} {next}
-              </Text>
+          <HStack p={4}>
+            <Text fontSize="md">
+              Próximo: {name} {next}
+            </Text>
 
-              <ChevronRightIcon mr="1" fontSize={32} />
-            </HStack>
-          </Link>
+            <ChevronRightIcon mr="1" fontSize={32} />
+          </HStack>
         </NextLink>
       </Flex>
     </SimpleGrid>

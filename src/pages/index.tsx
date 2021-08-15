@@ -1,5 +1,5 @@
 import data from '@assets/biblia/json/nvi_thin.json'
-import { Box, Heading, Link, Spinner } from '@chakra-ui/react'
+import { Box, Heading, Spinner, useColorMode } from '@chakra-ui/react'
 import { Layout } from '@components/Layout'
 import { BibleBook } from '@types/Bible'
 import { deburr, kebabCase } from 'lodash'
@@ -56,11 +56,20 @@ const RenderChapters = ({ book }: ChapterProps) => {
 
         return (
           <NextLink as={link} href={link} passHref key={link}>
-            <Link key={index}>
-              <Box as="span" m={2}>
-                {chapterNumber}
-              </Box>
-            </Link>
+            <Box
+              as="button"
+              m={1}
+              h={8}
+              w={8}
+              bg={'gray.50'}
+              color={'gray.800'}
+              boxShadow="2xl"
+              _hover={{
+                bg: 'gray.200'
+              }}
+            >
+              {chapterNumber}
+            </Box>
           </NextLink>
         )
       })}

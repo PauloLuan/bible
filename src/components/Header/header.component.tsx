@@ -1,20 +1,16 @@
 import {
-  Box,
-  Button,
   chakra,
-  CloseButton,
   Flex,
   HStack,
   IconButton,
   useColorMode,
   useColorModeValue,
   useDisclosure,
-  VisuallyHidden,
-  VStack
+  VisuallyHidden
 } from '@chakra-ui/react'
+import NextLink from 'next/link'
 import * as React from 'react'
-import { AiOutlineMenu } from 'react-icons/ai'
-import { FaChurch, FaMoon, FaSun } from 'react-icons/fa'
+import { FaBible, FaMoon, FaSun } from 'react-icons/fa'
 
 export interface HeaderProps {
   name?: string
@@ -38,13 +34,8 @@ export const Header = ({ name }: HeaderProps) => {
         data-testid="header"
       >
         <Flex alignItems="center" justifyContent="space-between" mx="auto">
-          <Flex>
-            <chakra.a
-              href="/"
-              title="Bíblia Sagrada"
-              display="flex"
-              alignItems="center"
-            >
+          <NextLink as={'/'} href={'/'} passHref key={'/'}>
+            <Flex as="a" align="center">
               <VisuallyHidden>Bíblia Sagrada</VisuallyHidden>
               <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">
                 <IconButton
@@ -52,12 +43,12 @@ export const Header = ({ name }: HeaderProps) => {
                   fontSize="20px"
                   color={useColorModeValue('gray.800', 'inherit')}
                   variant="ghost"
-                  icon={<FaChurch />}
+                  icon={<FaBible />}
                 />
                 Bíblia Sagrada
               </chakra.h1>
-            </chakra.a>
-          </Flex>
+            </Flex>
+          </NextLink>
           <HStack display="flex" alignItems="center" spacing={1}>
             <HStack
               spacing={1}
