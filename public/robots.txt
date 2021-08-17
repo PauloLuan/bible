@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://biblia-omega.vercel.app/
+
+# Sitemaps
+Sitemap: https://biblia-omega.vercel.app/sitemap.xml

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev -p 4444",
-    "build": "next build && next export",
+    "build": "next build && yarn next-sitemap && next export",
     "start": "next start",
     "format": "eslint --fix src --ext .js,.jsx,.ts,.tsx",
     "test": "jest --maxWorkers=50%",
@@ -60,6 +60,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "jest": "^27.0.6",
     "lint-staged": "^11.0.0",
+    "next-sitemap": "^1.6.157",
     "plop": "^2.7.4",
     "prettier": "^2.3.2",
     "typescript": "4.3.5"
