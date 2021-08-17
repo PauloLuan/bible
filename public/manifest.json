@@ -1,9 +1,9 @@
 {
   "theme_color": "#1A202C",
   "background_color": "#1A202C",
-  "display": "browser",
+  "display": "fullscreen",
   "scope": "https://biblia-omega.vercel.app/",
-  "start_url": "https://biblia-omega.vercel.app/",
+  "start_url": "/",
   "name": "Biblia Sagrada",
   "short_name": "Biblia",
   "description": "Biblia Sagrada completa e gratuita.",
