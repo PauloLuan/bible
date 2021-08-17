@@ -1,5 +1,5 @@
 import data from '@assets/biblia/json/nvi_thin.json'
-import { Box, Heading, Spinner, useColorMode } from '@chakra-ui/react'
+import { Box, Heading, Spinner } from '@chakra-ui/react'
 import { Layout } from '@components/Layout'
 import { BibleBook } from '@types/Bible'
 import { deburr, kebabCase } from 'lodash'

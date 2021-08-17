@@ -39,7 +39,7 @@ export const Header = ({ name }: HeaderProps) => {
               <VisuallyHidden>Bíblia Sagrada</VisuallyHidden>
               <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">
                 <IconButton
-                  aria-label="Open menu"
+                  aria-label="Abrir o Menu"
                   fontSize="20px"
                   color={useColorModeValue('gray.800', 'inherit')}
                   variant="ghost"

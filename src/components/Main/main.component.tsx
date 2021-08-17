@@ -12,7 +12,8 @@ import {
   Stack,
   Text,
   useColorModeValue,
-  useToast
+  useToast,
+  VisuallyHidden
 } from '@chakra-ui/react'
 import { deburr, kebabCase } from 'lodash'
 import NextLink from 'next/link'
@@ -28,20 +29,29 @@ export interface MainProps {
 
 interface VerseProps {
   text: string
+  completeName: string
   index: number
 }
 
-const Verse = ({ text, index }: VerseProps) => {
+const Verse = ({ completeName, text, index }: VerseProps) => {
   const [_, copyToClipboard] = useCopyToClipboard()
   const toast = useToast()
 
   return (
     <Text fontSize="xl" fontWeight="light">
-      <Text as="i" fontSize="xs">
+      <VisuallyHidden>
+        {completeName} versículo: {index}
+      </VisuallyHidden>
+      <Text
+        as="i"
+        fontSize="xs"
+        aria-label={`O texto abaixo é o ${completeName} versículo: ${index}`}
+      >
         {index} {'  -  '}
       </Text>
       {text}
       <CopyIcon
+        aria-label="Clique neste botão para copiar a passagem."
         onClick={() => {
           copyToClipboard(text)
           toast({
@@ -81,12 +91,20 @@ const Verses = ({ baseName, verses, name }: VersesProps) => {
         {name}
       </Heading>
 
-      <ShareButton text={completeName} />
+      <ShareButton
+        aria-label={`Clique neste botão para enviar a passagem ${completeName} via whatsapp.`}
+        text={completeName}
+      />
 
       <Divider />
 
       {verses.map((verse, index) => (
-        <Verse key={index} text={verse} index={index + 1} />
+        <Verse
+          completeName={completeName}
+          key={index}
+          text={verse}
+          index={index + 1}
+        />
       ))}
     </>
   )
@@ -143,6 +161,7 @@ const Footer = ({ index, name }) => {
             }}
           >
             <NextLink
+              aria-label={`Clique neste botão para ler a passagem anterior a esta`}
               as={previousLink}
               href={previousLink}
               passHref
@@ -173,6 +192,7 @@ const Footer = ({ index, name }) => {
           }}
         >
           <NextLink
+            aria-label={`Clique neste botão para ler a passagem posterior a esta.`}
             as={nextLink}
             href={nextLink}
             passHref
