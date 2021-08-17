@@ -34,7 +34,7 @@ export const Header = ({ name }: HeaderProps) => {
         data-testid="header"
       >
         <Flex alignItems="center" justifyContent="space-between" mx="auto">
-          <NextLink as={'/'} href={'/'} passHref key={'/'}>
+          <NextLink as={'/'} href={'/'} passHref key={'/'} prefetch={false}>
             <Flex as="a" align="center">
               <VisuallyHidden>Bíblia Sagrada</VisuallyHidden>
               <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">

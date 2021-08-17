@@ -147,6 +147,7 @@ const Footer = ({ index, name }) => {
               href={previousLink}
               passHref
               key={previousLink}
+              prefetch={false}
             >
               <HStack p={[2, 4]}>
                 <ChevronLeftIcon mr="1" fontSize={[15, 32]} />
@@ -171,7 +172,13 @@ const Footer = ({ index, name }) => {
             cursor: 'pointer'
           }}
         >
-          <NextLink as={nextLink} href={nextLink} passHref key={nextLink}>
+          <NextLink
+            as={nextLink}
+            href={nextLink}
+            passHref
+            key={nextLink}
+            prefetch={false}
+          >
             <HStack p={[2, 4]}>
               <Text fontSize={['sm', 'md']}>
                 Próximo: {name} {next}
@@ -202,7 +209,7 @@ const BackHomeButton = () => {
         cursor: 'pointer'
       }}
     >
-      <NextLink as={'/'} href={'/'} passHref key={'/'}>
+      <NextLink as={'/'} href={'/'} passHref key={'/'} prefetch={false}>
         <HStack p={[2, 4]}>
           <IconButton
             aria-label="Voltar para a tela inicial"
@@ -218,7 +225,10 @@ const BackHomeButton = () => {
 }
 
 const ShareButton = ({ text = '' }) => {
-  const currentUrl = window.location.href
+  let currentUrl = ``
+  if (process.browser) {
+    currentUrl = window.location.href
+  }
 
   const href = `whatsapp://send?text=Leia ${text} da Bíblia Sagrada! Confira aqui: ${currentUrl}`
   return (
