@@ -1,6 +1,8 @@
 ## 💡 Introduction
 
-This is my [Next.js](https://nextjs.org/) boilerplate
+Bible: This is my [Next.js](https://nextjs.org/) bible project.
+
+You can check a production running version of this project [here](https://biblia-omega.vercel.app/)
 
 <span id="top"></span>
 
@@ -9,8 +11,8 @@ This is my [Next.js](https://nextjs.org/) boilerplate
 </p>
 
 <p align="center">
-    <a href="https://github.com/PauloLuan/next-js-boilerplate/actions/workflows/ci.yml"><img src="https://img.shields.io/github/workflow/status/pauloluan/next-js-boilerplate/ci?style=for-the-badge"></a>
-    <a href="https://github.com/PauloLuan/next-js-boilerplate/actions/workflows/ci.yml"><img src="https://forthebadge.com/images/badges/it-works-why.svg"></a>
+    <a href="https://github.com/PauloLuan/bible/actions/workflows/ci.yml"><img src="https://img.shields.io/github/workflow/status/pauloluan/bible/ci?style=for-the-badge"></a>
+    <a href="https://github.com/PauloLuan/bible/actions/workflows/ci.yml"><img src="https://forthebadge.com/images/badges/it-works-why.svg"></a>
 </p>
 
 ## 📝 Minimal Requirements
@@ -19,13 +21,19 @@ This is my [Next.js](https://nextjs.org/) boilerplate
 
 ## Getting Started
 
-To create a project from this boilerplate run:
+First, you have to clone the project:
 
 ```bash
-yarn create next-app chakra-studies --example https://github.com/PauloLuan/next-js-boilerplate
+git clone https://github.com/PauloLuan/bible.git
 ```
 
-Then, run the development server:
+Then, install the deps with yarn: 
+
+```bash
+yarn
+```
+
+run the development server:
 
 ```bash
 yarn dev
@@ -66,8 +74,6 @@ This project uses:
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
 - [Prettier](https://prettier.io/)
 - [Eslint](https://eslint.org/)
-
-This project was inspired and extended from [nextjs-with-chakra-ui-boilerplate](https://github.com/Lukazovic/nextjs-with-chakra-ui-boilerplate)
 
 ## :pencil: Author
 
